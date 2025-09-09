@@ -143,8 +143,3 @@ elif app_mode == "Prediction":
 # -------------------------------
 # Footer
 # -------------------------------
-st.sidebar.markdown("---")
-st.sidebar.markdown("""
-Developed by [Anshuman Panda](https://www.linkedin.com/in/anshuman-panda-575562258/) 👨‍💻  
-Connect with me on [LinkedIn](https://www.linkedin.com/in/anshuman-panda-575562258/) | [GitHub](https://github.com/PandaAnshuman)
-""")
