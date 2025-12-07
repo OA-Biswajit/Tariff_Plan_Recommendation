@@ -1,67 +1,98 @@
 # PriceApp (npn-hackthon)
 
-Short project README for the PriceApp repository used in the OA-Biswajit hackathon.
+A Decision Tree-based tariff plan recommendation system for telecom customers.
 
 **Live App:** https://tariffplanrecommendation.streamlit.app/
 
-**Project:** Price prediction and recommendation utilities used for hackathon demos and analysis.
+## Overview
 
-**Contents:**
-- `main.py` - Entry point for running the primary script.
-- Notebooks: `EDA_Biswajit.ipynb`, `Final_good_Recom.ipynb` for exploration and recommendations.
-- `requirements.txt` - Python dependencies for the project.
-- `env/` - Optional local virtual environment (do not commit if you create your own).
+This project uses machine learning to recommend optimal tariff plans to telecom customers based on their usage patterns (minutes, calls, international usage, voicemail, etc.).
+
+- **Model:** Decision Tree Classifier
+- **Purpose:** Segment customers and recommend tailored pricing plans
+- **Framework:** Streamlit (web UI) + Scikit-learn (ML)
+
+## Project Structure
+
+```
+├── main.py                      # Streamlit app entry point
+├── EDA_Biswajit.ipynb          # Exploratory Data Analysis
+├── Final_good_Recom.ipynb      # Full analysis & recommendation pipeline
+├── tariff_recomend.pkl         # Pre-trained Decision Tree model
+├── requirements.txt            # Python dependencies
+├── page_photo.png             # UI asset
+└── README.md
+```
 
 ## Requirements
-- Python 3.10+ recommended
-- See `requirements.txt` for specific packages and versions.
+
+- Python 3.10+
+- See `requirements.txt` for dependencies
 
 ## Setup
-1. Create and activate a virtual environment (recommended):
 
-	 ```bash
-	 python -m venv .venv
-	 source .venv/Scripts/activate  # on Windows (bash)
-	 # or: source .venv/bin/activate  # on Unix-like
-	 ```
+### 1. Create Virtual Environment
 
-2. Install dependencies:
+```bash
+python -m venv .venv
+source .venv/Scripts/activate  # on Windows (bash)
+# or: source .venv/bin/activate  # on Unix-like
+```
 
-	 ```bash
-	 pip install -r requirements.txt
-	 ```
+### 2. Install Dependencies
 
-3. (Optional) If you already have an `env/` folder included, you can reuse it by activating the environment in that folder.
+```bash
+pip install -r requirements.txt
+```
 
-## Running
-- To run the Streamlit app:
+## Running the App
 
-	```bash
-	streamlit run main.py
-	```
-	The app will open in your browser at `http://localhost:8501`.
+### Streamlit Web UI
 
-### Sample Login Credentials (for developers)
-If the app has login enabled, use these sample credentials:
+```bash
+streamlit run main.py
+```
+
+The app will open at `http://localhost:8501`.
+
+**Navigation:**
+- **Home** - Project overview
+- **About** - Model details and input features
+- **Prediction** - Enter customer usage data to get a tariff recommendation
+
+### Jupyter Notebooks
+
+```bash
+jupyter notebook
+```
+
+- `EDA_Biswajit.ipynb` - Data exploration and visualization
+- `Final_good_Recom.ipynb` - Complete ML pipeline with clustering and recommendations
+
+## Sample Login Credentials (if enabled)
+
+If login is active in the app:
 - **Mobile Number:** `382-4657`
 - **Password:** `pass123`
 
-- To open the notebooks for interactive analysis, start Jupyter or open them in VS Code:
+## Features
 
-	```bash
-	jupyter notebook
-	```
+- **Customer Segmentation:** Identifies 11+ distinct customer segments based on usage patterns
+- **Outlier Detection:** Uses Autoencoder and IQR methods for anomaly detection
+- **Plan Recommendations:** Top 3 tailored tariff plans per customer segment
+- **Cluster Analysis:** K-Means, DBSCAN, and Agglomerative clustering methods
 
-## Development notes
-- Keep the `requirements.txt` up to date when adding packages.
-- Avoid committing large environment folders; prefer listing dependencies instead.
+## Model Output
 
-## Contributing
-- Create a new branch for features or fixes and open a pull request against `main`.
-- Add short, focused commits and include tests or notebook examples when relevant.
+The model returns:
+- **Cluster ID** - Customer segment (0-19)
+- **Top 3 Recommended Plans** - Plan name + monthly price (₹)
 
-## License
-This repository includes a `LICENSE` file. Follow its terms for reuse and distribution.
-
----
-If you'd like, I can also add badges (CI, license), expand the Usage examples, or generate a minimal contributing guide — tell me which you'd prefer next.
+Example:
+```
+✅ Recommended Tariff Plan: 5
+Top 3 Recommended Plans:
+- Basic Saver: ₹199
+- Basic Global: ₹299
+- Standard: ₹399
+```
